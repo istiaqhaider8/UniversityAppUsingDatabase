@@ -33,12 +33,7 @@ namespace UniversityAppMana.UI
 
 
            
-            SqlConnection connection = new SqlConnection(connectionString);
-            string query = "Insert into Students(Name,RegNo,Email,Address) VALUES('"+student.Name+ "','" + student.RegNo + "','" + student.Email + "','" + student.Address + "');";
-            SqlCommand command = new SqlCommand(query, connection);
-            connection.Open();
-            int rowAffected = command.ExecuteNonQuery();
-            connection.Close();
+            int rowAffected = InsertStudent(student);
 
             if (rowAffected > 0)
             {
@@ -50,14 +45,41 @@ namespace UniversityAppMana.UI
             }
         }
 
+        private int InsertStudent(Student student)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            string query = "Insert into Students(Name,RegNo,Email,Address) VALUES('" + student.Name + "','" + student.RegNo +
+                           "','" + student.Email + "','" + student.Address + "');";
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            int rowAffected = command.ExecuteNonQuery();
+            connection.Close();
+            return rowAffected;
+        }
+
+
         protected void ShowButton_Click(object sender, EventArgs e)
+        {
+            ShowStudents();
+        }
+
+        private void ShowStudents()
+        {
+            List<Student> studentList = GetAllStudents();
+
+
+            studentGridView.DataSource = studentList;
+            studentGridView.DataBind();
+        }
+
+        private List<Student> GetAllStudents()
         {
             List<Student> studentList = new List<Student>();
             SqlConnection connection = new SqlConnection(connectionString);
             string query = "Select * from Students;";
-            SqlCommand command = new SqlCommand(query,connection);
+            SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
-           SqlDataReader reader = command.ExecuteReader();
+            SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
@@ -68,15 +90,10 @@ namespace UniversityAppMana.UI
                 Student student = new Student(name, email, regNo, address);
                 studentList.Add(student);
             }
+
             reader.Close();
             connection.Close();
-
-
-            studentGridView.DataSource = studentList;
-            studentGridView.DataBind();
-
-
-
+            return studentList;
         }
     }
 }
