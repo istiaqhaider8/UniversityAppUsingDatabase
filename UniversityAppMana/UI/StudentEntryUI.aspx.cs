@@ -31,19 +31,32 @@ namespace UniversityAppMana.UI
             string address = addressTextBox.Text;
             Student student = new Student(name, email, regNo, address);
 
-
-           
-            int rowAffected = InsertStudent(student);
-
-            if (rowAffected > 0)
+            bool isRegNoExist = IsRegNoExist(student.RegNo);
+            if (isRegNoExist)
             {
-                Response.Write("Save Successfully");
+                Response.Write("Registration number already exist");
             }
             else
             {
-                Response.Write("Insertion Failed!");
+                int rowAffected = InsertStudent(student);
+
+                if (rowAffected > 0)
+                {
+                    Response.Write("Save Successfully");
+                }
+                else
+                {
+                    Response.Write("Insertion Failed!");
+                }
             }
         }
+
+
+        protected void ShowButton_Click(object sender, EventArgs e)
+        {
+            ShowStudents();
+        }
+
 
         private int InsertStudent(Student student)
         {
@@ -57,11 +70,6 @@ namespace UniversityAppMana.UI
             return rowAffected;
         }
 
-
-        protected void ShowButton_Click(object sender, EventArgs e)
-        {
-            ShowStudents();
-        }
 
         private void ShowStudents()
         {
@@ -94,6 +102,42 @@ namespace UniversityAppMana.UI
             reader.Close();
             connection.Close();
             return studentList;
+        }
+
+        private Student GetStudentByRegNo(string regNo)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            string query = "Select * from Students where RegNo='"+regNo+"';";
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+
+            Student student = null;
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                reader.Read();
+                string name = reader["Name"].ToString();
+                string email = reader["Email"].ToString();
+                string regNumber = reader["RegNo"].ToString();
+                string address = reader["Address"].ToString();
+                reader.Close();
+                student = new Student(name, email, regNumber, address);
+            }
+
+            connection.Close();
+            return student;
+        }
+
+        private bool IsRegNoExist(string regNo)
+        {
+            bool isRegNoExist = false;
+            Student student = GetStudentByRegNo(regNo);
+            if (student != null)
+            {
+                isRegNoExist = true;
+            }
+
+            return isRegNoExist;
         }
     }
 }
