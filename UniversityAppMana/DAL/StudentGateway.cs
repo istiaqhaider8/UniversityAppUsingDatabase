@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using UniversityAppMana.Models;
 
@@ -34,11 +31,12 @@ namespace UniversityAppMana.DAL
 
             while (reader.Read())
             {
+                int id = Convert.ToInt32(reader["id"]);
                 string name = reader["Name"].ToString();
                 string email = reader["Email"].ToString();
                 string regNo = reader["RegNo"].ToString();
                 string address = reader["Address"].ToString();
-                Student student = new Student(name, email, regNo, address);
+                Student student = new Student(id,name, email, regNo, address);
                 studentList.Add(student);
             }
 
@@ -59,12 +57,13 @@ namespace UniversityAppMana.DAL
             if (reader.HasRows)
             {
                 reader.Read();
+                int id = Convert.ToInt32(reader["id"]);
                 string name = reader["Name"].ToString();
                 string email = reader["Email"].ToString();
                 string regNumber = reader["RegNo"].ToString();
                 string address = reader["Address"].ToString();
                 reader.Close();
-                student = new Student(name, email, regNumber, address);
+                student = new Student(id,name, email, regNumber, address);
             }
 
             connection.Close();

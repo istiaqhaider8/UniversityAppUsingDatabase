@@ -29,6 +29,11 @@ namespace UniversityAppMana.UI
                 if (rowAffected > 0)
                 {
                     Response.Write("Save Successfully");
+
+                    nameTextBox.Text = "";
+                    emailTextBox.Text = "";
+                    regNoTextBox.Text = "";
+                    addressTextBox.Text = "";
                 }
                 else
                 {

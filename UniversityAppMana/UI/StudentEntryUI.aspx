@@ -37,7 +37,34 @@
                 </tr>
             </table>
             <h4>Student List</h4>
-            <asp:GridView runat="server" ID="studentGridView"></asp:GridView>
+            <asp:GridView runat="server" ID="studentGridView" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:TemplateField HeaderText="Registration Number">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%#Eval("RegNo") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
+                    <asp:TemplateField HeaderText="Student Name">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%#Eval("Name") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
+                    <asp:TemplateField HeaderText="Email">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%#Eval("Email") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
+                    <asp:TemplateField HeaderText="Address">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%#Eval("Address") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                </Columns>
+            </asp:GridView>
         </div>
         
       
