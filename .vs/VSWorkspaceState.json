@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\UniversityAppMana",
+    "\\UniversityAppMana\\UI"
   ],
+  "SelectedNode": "\\UniversityAppMana\\UI\\StudentEntryUI.aspx",
   "PreviewInSolutionExplorer": false
 }

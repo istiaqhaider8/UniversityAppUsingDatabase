@@ -70,6 +70,19 @@ namespace UniversityAppMana.DAL
             return student;
         }
 
-       
+        public int Update(Student student)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            string query = "UPDATE  Students SET Name='" + student.Name + "',RegNo='" + student.RegNo + "',Email='" + student.Email + "',Address='" + student.Address + "' WHERE Id="+student.Id+"";
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            int rowAffected = command.ExecuteNonQuery();
+            connection.Close();
+            return rowAffected;
+
+
+        }
+
+
     }
 }

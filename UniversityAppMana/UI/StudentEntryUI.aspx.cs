@@ -10,7 +10,23 @@ namespace UniversityAppMana.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["regNo"] != null)
+                {
+                    string regNo = Request.QueryString["regNo"];
+                    Student student = studentManager.GetStudentByRegNo(regNo);
+                    if (student != null)
+                    {
+                        nameTextBox.Text = student.Name;
+                        emailTextBox.Text = student.Email;
+                        regNoTextBox.Text = student.RegNo;
+                        addressTextBox.Text = student.Address;
+                        StudentIdHiddenField.Value = student.Id.ToString();
+                        SaveButton.Text = "Update";
+                    }
+                }
+            }
         }
 
 
@@ -25,20 +41,47 @@ namespace UniversityAppMana.UI
                 string regNo = regNoTextBox.Text;
                 string address = addressTextBox.Text;
                 Student student = new Student(name, email, regNo, address);
-                int rowAffected = studentManager.InsertStudent(student);
-                if (rowAffected > 0)
-                {
-                    Response.Write("Save Successfully");
 
-                    nameTextBox.Text = "";
-                    emailTextBox.Text = "";
-                    regNoTextBox.Text = "";
-                    addressTextBox.Text = "";
+                int rowAffected = 0;
+
+                if (SaveButton.Text == "Update")
+                { 
+                    int studentId = Convert.ToInt32(StudentIdHiddenField.Value); 
+                    student.Id = studentId;
+                   rowAffected = studentManager.Update(student);
+                   if (rowAffected > 0)
+                   {
+                       Response.Write("Update Successfully");
+
+                       nameTextBox.Text = "";
+                       emailTextBox.Text = "";
+                       regNoTextBox.Text = "";
+                       addressTextBox.Text = "";
+                   }
+                   else
+                   {
+                       Response.Write("Update Failed");
+                   }
                 }
                 else
                 {
-                    Response.Write("Insertion Failed!");
+                    rowAffected = studentManager.InsertStudent(student);
+                    if (rowAffected > 0)
+                    {
+                        Response.Write("Save Successfully");
+
+                        nameTextBox.Text = "";
+                        emailTextBox.Text = "";
+                        regNoTextBox.Text = "";
+                        addressTextBox.Text = "";
+                    }
+                    else
+                    {
+                        Response.Write("Insertion Failed!");
+                    }
                 }
+
+                
             }
             catch(Exception exception)
             {

@@ -39,6 +39,11 @@ namespace UniversityAppMana.BLL
 
             return isRegNoExist;
         }
+
+        public int Update(Student student)
+        {
+            return studentGateway.Update(student);
+        }
     }
 }
 

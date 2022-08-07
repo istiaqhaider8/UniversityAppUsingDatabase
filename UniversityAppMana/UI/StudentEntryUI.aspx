@@ -13,7 +13,9 @@
             <table>
                 <tr>
                     <td>Name</td>
-                    <td><asp:TextBox ID="nameTextBox" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="nameTextBox" runat="server"></asp:TextBox>
+                        <asp:HiddenField ID="StudentIdHiddenField" runat="server" />
+                    </td>
                 </tr>
                 <tr>
                     <td>Email</td>

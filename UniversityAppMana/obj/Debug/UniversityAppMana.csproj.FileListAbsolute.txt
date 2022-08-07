@@ -174,4 +174,3 @@ C:\Users\Istiaq\Desktop\UniversityAppUsingDatabase\UniversityAppMana\obj\Debug\U
 C:\Users\Istiaq\Desktop\UniversityAppUsingDatabase\UniversityAppMana\obj\Debug\UniversityAppMana.csproj.CopyComplete
 C:\Users\Istiaq\Desktop\UniversityAppUsingDatabase\UniversityAppMana\obj\Debug\UniversityAppMana.dll
 C:\Users\Istiaq\Desktop\UniversityAppUsingDatabase\UniversityAppMana\obj\Debug\UniversityAppMana.pdb
-C:\Users\Istiaq\Desktop\UniversityAppUsingDatabase\UniversityAppMana\obj\Debug\UniversityAppMana.csproj.AssemblyReference.cache
