@@ -64,7 +64,12 @@
                             <asp:Label runat="server" Text='<%#Eval("Address") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-
+                    
+                    <asp:TemplateField HeaderText="Action">
+                        <ItemTemplate>
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl=' <%#string.Format("StudentEntryUI.aspx?regNo={0}",Eval("RegNo")) %>'>Edit</asp:HyperLink>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>

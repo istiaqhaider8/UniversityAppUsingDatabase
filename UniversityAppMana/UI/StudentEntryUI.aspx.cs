@@ -26,6 +26,7 @@ namespace UniversityAppMana.UI
                         SaveButton.Text = "Update";
                     }
                 }
+                ShowStudents();
             }
         }
 
@@ -57,7 +58,8 @@ namespace UniversityAppMana.UI
                        emailTextBox.Text = "";
                        regNoTextBox.Text = "";
                        addressTextBox.Text = "";
-                   }
+                       ShowStudents();
+                    }
                    else
                    {
                        Response.Write("Update Failed");
@@ -74,6 +76,7 @@ namespace UniversityAppMana.UI
                         emailTextBox.Text = "";
                         regNoTextBox.Text = "";
                         addressTextBox.Text = "";
+                        ShowStudents();
                     }
                     else
                     {

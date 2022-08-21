@@ -11,8 +11,7 @@ namespace UniversityAppMana.DAL
         public int InsertStudent(Student student)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            string query = "Insert into Students(Name,RegNo,Email,Address) VALUES('" + student.Name + "','" + student.RegNo +
-                           "','" + student.Email + "','" + student.Address + "');";
+            string query = "Insert into Students(Name,RegNo,Email,Address) VALUES('" + student.Name + "','" + student.RegNo + "','" + student.Email + "','" + student.Address + "');";
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
             int rowAffected = command.ExecuteNonQuery();
@@ -79,9 +78,9 @@ namespace UniversityAppMana.DAL
             int rowAffected = command.ExecuteNonQuery();
             connection.Close();
             return rowAffected;
-
-
         }
+
+
 
 
     }

@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\UniversityAppMana",
+    "\\UniversityAppMana\\DAL",
     "\\UniversityAppMana\\UI"
   ],
-  "SelectedNode": "\\UniversityAppMana\\UI\\StudentEntryUI.aspx",
+  "SelectedNode": "\\UniversityAppMana\\DAL\\StudentGateway.cs",
   "PreviewInSolutionExplorer": false
 }
