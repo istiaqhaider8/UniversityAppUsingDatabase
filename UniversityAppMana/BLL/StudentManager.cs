@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UniversityAppMana.Models;
 using UniversityAppMana.DAL;
+using UniversityAppMana.Models.ViewModel;
 
 namespace UniversityAppMana.BLL
 {
@@ -43,6 +44,11 @@ namespace UniversityAppMana.BLL
         public int Update(Student student)
         {
             return studentGateway.Update(student);
+        }
+
+        public List<StudentViewModel> GetStudentViewModels()
+        {
+            return studentGateway.GetAllStudentViewModels();
         }
     }
 }

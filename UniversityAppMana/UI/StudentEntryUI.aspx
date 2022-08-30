@@ -11,6 +11,14 @@
         <div>
             <h1>Student Entry</h1>
             <table>
+                
+                <tr>
+                    <td>Department</td>
+                    <td>
+                        <asp:DropDownList ID="departmetDropDownList" runat="server"></asp:DropDownList>
+                    </td>
+                </tr>
+
                 <tr>
                     <td>Name</td>
                     <td><asp:TextBox ID="nameTextBox" runat="server"></asp:TextBox>
@@ -62,6 +70,18 @@
                     <asp:TemplateField HeaderText="Address">
                         <ItemTemplate>
                             <asp:Label runat="server" Text='<%#Eval("Address") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
+                    <asp:TemplateField HeaderText="Department Id">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%#Eval("DepartmentId") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
+                    <asp:TemplateField HeaderText="Department Name">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%#Eval("DepartmentName") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     

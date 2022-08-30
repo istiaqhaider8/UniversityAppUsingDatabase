@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UniversityAppMana.BLL;
 using UniversityAppMana.Models;
+using UniversityAppMana.Models.ViewModel;
 
 
 namespace UniversityAppMana.UI
@@ -23,10 +24,12 @@ namespace UniversityAppMana.UI
                         regNoTextBox.Text = student.RegNo;
                         addressTextBox.Text = student.Address;
                         StudentIdHiddenField.Value = student.Id.ToString();
+                        departmetDropDownList.SelectedIndex = student.DepartmentId;
                         SaveButton.Text = "Update";
                     }
                 }
                 ShowStudents();
+                LoadDepartmentDropdown();
             }
         }
 
@@ -41,7 +44,8 @@ namespace UniversityAppMana.UI
                 string email = emailTextBox.Text;
                 string regNo = regNoTextBox.Text;
                 string address = addressTextBox.Text;
-                Student student = new Student(name, email, regNo, address);
+                int departmentId = Convert.ToInt32(departmetDropDownList.SelectedValue);
+                Student student = new Student(name, email, regNo, address,departmentId);
 
                 int rowAffected = 0;
 
@@ -53,7 +57,6 @@ namespace UniversityAppMana.UI
                    if (rowAffected > 0)
                    {
                        Response.Write("Update Successfully");
-
                        nameTextBox.Text = "";
                        emailTextBox.Text = "";
                        regNoTextBox.Text = "";
@@ -83,8 +86,6 @@ namespace UniversityAppMana.UI
                         Response.Write("Insertion Failed!");
                     }
                 }
-
-                
             }
             catch(Exception exception)
             {
@@ -97,7 +98,7 @@ namespace UniversityAppMana.UI
         }
         private void ShowStudents()
         {
-            List<Student> studentList = studentManager.GetAllStudents();
+            List<StudentViewModel> studentList = studentManager.GetStudentViewModels();
 
 
             studentGridView.DataSource = studentList;
@@ -105,7 +106,14 @@ namespace UniversityAppMana.UI
         }
 
 
-
-
+        private void LoadDepartmentDropdown()
+        {
+            DepartmentManager departmentManager = new DepartmentManager();
+            List<Department> departments = departmentManager.GetAllDepartments();
+            departmetDropDownList.DataSource = departments;
+            departmetDropDownList.DataTextField = "Name";
+            departmetDropDownList.DataValueField = "Id";
+            departmetDropDownList.DataBind();
+        }
     }
 }
